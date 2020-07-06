@@ -9,8 +9,8 @@ jobs:
           name: Install Dependencies
           command: . build/install.sh
       - run:
-          name: Authorize to an existing scratch org
-          command: . build/Authenticate-Existing-ScratchOrg.sh
+          name: Authorize an existing scratch org
+          command: . build/authenticate-existing-scratchorg.sh
       - run:
           name: Validate Components & Run Tests
           command: . build/test.sh
