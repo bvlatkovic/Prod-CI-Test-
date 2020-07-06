@@ -10,7 +10,7 @@ jobs:
           command: . build/install.sh
       - run:
           name: Kick off Validation steps
-		  command: .build/validate.sh
+	  command: .build/validate.sh
       - store_test_results:
           path: test-results
   deploy-prod:
