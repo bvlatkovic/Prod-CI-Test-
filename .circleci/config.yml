@@ -7,13 +7,19 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies
-          command: . build/install.sh
+          command: sudo npm install -global sfdx-cli
       - run:
-          name: Create Scratch Org
-          command: . build/create-scratch-org.sh
+          name: Authenticate DevHub
+          command: sfdx force:auth:jwt:grant --clientid $SFDC_PROD_CLIENTID --jwtkeyfile $SFDC_PROD_CLIENTID --username $SFDC_PROD_USER --setdefaultdevhubusername -a DevHub
       - run:
+          name: Create a scratch org
+          command: sfdx force:org:create -f config/project-scratch-def.json -a ${CIRCLE_BRANCH} -ss
+	    - run:
+	        name: push source to scratch org
+		      command: sfdx force:source:push -u ${CIRCLE_BRANCH}
+	    - run:
           name: Validate Components & Run Tests
-          command: . build/test.sh
+          command: sfdx force:apex:test:run --testlevel RunLocalTests --outputdir test-results --resultformat tap --targetusername ${CIRCLE_BRANCH}
       - store_test_results:
           path: test-results
   deploy-prod:
