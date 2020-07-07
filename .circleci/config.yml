@@ -11,7 +11,7 @@ jobs:
       - run:
           name: Create keys directory
           command: mkdir keys
-	    - run:
+      - run:
           name: Retrieve a key
           command: echo $SFDC_SERVER_KEY | base64 -d > keys/server.key
       - run:
