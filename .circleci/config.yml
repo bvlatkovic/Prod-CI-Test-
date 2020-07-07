@@ -14,10 +14,10 @@ jobs:
       - run:
           name: Create a scratch org
           command: sfdx force:org:create -f config/project-scratch-def.json -a ${CIRCLE_BRANCH} -ss
-	    - run:
-	        name: push source to scratch org
-		      command: sfdx force:source:push -u ${CIRCLE_BRANCH}
-	    - run:
+      - run:
+	  name: push source to scratch org
+          command: sfdx force:source:push -u ${CIRCLE_BRANCH}
+      - run:
           name: Validate Components & Run Tests
           command: sfdx force:apex:test:run --testlevel RunLocalTests --outputdir test-results --resultformat tap --targetusername ${CIRCLE_BRANCH}
       - store_test_results:
