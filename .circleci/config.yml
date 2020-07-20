@@ -34,7 +34,7 @@ jobs:
       - run:
           name: Create Version of Unlocked Package
           command: sfdx force:package:version:create --package "ciTestPackage" --definitionfile sfdx-project.json --wait 15 -x --json
-	  - run:
+      - run:
           name: Install Unlocked Package in a scratch org 
           command: sfdx force:package:install --package "ciTestPackage" -u ${CIRCLE_BRANCH}
 deploy-prod:
