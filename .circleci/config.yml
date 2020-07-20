@@ -28,7 +28,16 @@ jobs:
           command: sfdx force:apex:test:run --testlevel RunLocalTests --outputdir test-results --resultformat tap --targetusername ${CIRCLE_BRANCH}
       - store_test_results:
           path: test-results
-  deploy-prod:
+      - run:
+          name: Create Unlocked Package
+          command: sfdx force:package:create  -n ciTestPackage -t Unlocked -r force-app
+      - run:
+          name: Create Version of Unlocked Package
+          command: sfdx force:package:version:create --package "ciTestPackage" --definitionfile sfdx-project.json --wait 15 -x --json
+	  - run:
+          name: Install Unlocked Package in a scratch org 
+          command: sfdx force:package:install --package "ciTestPackage" -u ${CIRCLE_BRANCH}
+deploy-prod:
     docker:
     - image: circleci/node:latest
     steps:
