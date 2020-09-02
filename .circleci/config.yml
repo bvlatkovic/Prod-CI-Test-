@@ -30,13 +30,13 @@ jobs:
           path: test-results
       - run:
           name: Create Unlocked Package
-          command: sfdx force:package:create  -n ciTestPackage -t Unlocked -r force-app
+          command: sfdx force:package:create  -n $PACKAGE_NAME -t Unlocked -r force-app
       - run:
           name: Create Version of Unlocked Package
-          command: sfdx force:package:version:create --package "ciTestPackage" --definitionfile sfdx-project.json --wait 15 -x --json
+          command: sfdx force:package:version:create --package $PACKAGE_NAME --definitionfile sfdx-project.json --wait 15 -x --json
       - run:
           name: Install Unlocked Package in a scratch org 
-          command: sfdx force:package:install --package "ciTestPackage" -u ${CIRCLE_BRANCH}
+          command: sfdx force:package:install --package $PACKAGE_NAME -u ${CIRCLE_BRANCH}
 deploy-prod:
     docker:
     - image: circleci/node:latest
