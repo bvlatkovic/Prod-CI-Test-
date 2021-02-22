@@ -28,15 +28,15 @@ jobs:
           command: sfdx force:apex:test:run --testlevel RunLocalTests --outputdir test-results --resultformat tap --targetusername ${CIRCLE_BRANCH}
       - store_test_results:
           path: test-results
-      - run:
-          name: Create Unlocked Package
-          command: sfdx force:package:create  -n $PACKAGE_NAME -t Unlocked -r force-app
-      - run:
-          name: Create Version of Unlocked Package
-          command: sfdx force:package:version:create --package $PACKAGE_NAME --definitionfile sfdx-project.json --wait 15 -x --json
-      - run:
-          name: Install Unlocked Package in a scratch org 
-          command: sfdx force:package:install --package $PACKAGE_NAME -u ${CIRCLE_BRANCH}
+      #- run:
+      #    name: Create Unlocked Package
+      #    command: sfdx force:package:create  -n $PACKAGE_NAME -t Unlocked -r force-app
+      # - run:
+      #    name: Create Version of Unlocked Package
+      #    command: sfdx force:package:version:create --package $PACKAGE_NAME --definitionfile sfdx-project.json --wait 15 -x --json
+      #- run:
+      #    name: Install Unlocked Package in a scratch org 
+      #    command: sfdx force:package:install --package $PACKAGE_NAME -u ${CIRCLE_BRANCH}
 deploy-prod:
     docker:
     - image: circleci/node:latest
