@@ -9,6 +9,9 @@ jobs:
           name: Install Dependencies
           command: sudo npm install sfdx-cli --global
       - run:
+          name: check CLI version
+          command: sfdx force:plugins --core
+      - run:
           name: Create keys directory
           command: mkdir keys
       - run:
