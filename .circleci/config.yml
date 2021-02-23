@@ -28,12 +28,12 @@ jobs:
      #     command: sfdx force:apex:test:run --testlevel RunLocalTests --outputdir test-results --resultformat tap --targetusername ${CIRCLE_BRANCH}
      # - store_test_results:
      #     path: test-results
-      - run: 
-          name: Convert Source to MDAPI
-          command: sfdx force:source:convert -r force-app -d mdapipackage 
+     # - run: 
+     #   name: Convert Source to MDAPI
+     #     command: sfdx force:source:convert -r force-app -d mdapipackage 
       - run:
-          name: Deploy MDAPI package to devHub
-          command: sfdx force:mdapi:deploy -d mdapipackage -u $SFDC_PROD_USER -w 20
+          name: Deploy Source to devHub
+          command: sfdx force:source:deploy -p force-app -u $SFDC_PROD_USER -w 20
       #- run:
       #    name: Create Unlocked Package
       #    command: sfdx force:package:create  -n $PACKAGE_NAME -t Unlocked -r force-app
