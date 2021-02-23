@@ -33,7 +33,7 @@ jobs:
           command: sfdx force:source:convert -r force-app -d mdapipackage 
       - run:
           name: Deploy MDAPI package to devHub
-          command: sfdx force:mdapi:deploy -d mdapipackage -u $SFDC_PROD_USER
+          command: sfdx force:mdapi:deploy -d mdapipackage -u $SFDC_PROD_USER -w 20
       #- run:
       #    name: Create Unlocked Package
       #    command: sfdx force:package:create  -n $PACKAGE_NAME -t Unlocked -r force-app
