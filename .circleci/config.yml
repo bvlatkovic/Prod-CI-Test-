@@ -22,7 +22,7 @@ jobs:
           command: sfdx force:auth:jwt:grant --clientid $SFDC_PROD_CLIENTID --jwtkeyfile keys/server.key --username $SFDC_PROD_USER
       - run:
           name: Create a scratch org
-          command: sfdx force:org:create -f config/project-scratch-def.json -a ${CIRCLE_BRANCH}
+          command: sfdx force:org:create -f config/project-scratch-def.json -a ${CIRCLE_BRANCH} -v $SFDC_PROD_USER
      # - run:
      #     name: push source to scratch org
      #     command: sfdx force:source:push -u ${CIRCLE_BRANCH}
