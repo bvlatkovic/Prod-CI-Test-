@@ -20,9 +20,9 @@ jobs:
       - run:
           name: Authenticate DevHub
           command: sfdx force:auth:jwt:grant --clientid $SFDC_PROD_CLIENTID --jwtkeyfile keys/server.key --username $SFDC_PROD_USER
-     # - run:
-     #    name: Create a scratch org
-     #     command: sfdx force:org:create -f config/project-scratch-def.json -a ${CIRCLE_BRANCH} -ss
+      - run:
+          name: Create a scratch org
+          command: sfdx force:org:create -f config/project-scratch-def.json -a ${CIRCLE_BRANCH} -ss
      # - run:
      #     name: push source to scratch org
      #     command: sfdx force:source:push -u ${CIRCLE_BRANCH}
@@ -34,9 +34,9 @@ jobs:
      # - run: 
      #   name: Convert Source to MDAPI
      #     command: sfdx force:source:convert -r force-app -d mdapipackage 
-      - run:
-          name: Deploy Source to devHub
-          command: sfdx force:source:deploy -p force-app -u $SFDC_PROD_USER -w 20
+     # - run:
+     #     name: Deploy Source to devHub
+     #     command: sfdx force:source:deploy -p force-app -u $SFDC_PROD_USER -w 20
       #- run:
       #    name: Create Unlocked Package
       #    command: sfdx force:package:create  -n $PACKAGE_NAME -t Unlocked -r force-app
