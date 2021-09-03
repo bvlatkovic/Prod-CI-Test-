@@ -60,17 +60,17 @@ jobs:
 #      - run:
 #          name: Deploy to Production
 #          command: . build/deploy-prod.sh
-workflows:
-  version: 2
-  validate:
-    jobs:
-      - build:
-          filters:
-            branches:
-              ignore:
-                - master
-      - deploy-prod:
-          filters:
-            branches:
-              only:
-                - master
+# workflows:
+#  version: 2
+#  validate:
+#    jobs:
+#      - build:
+#          filters:
+#            branches:
+#              ignore:
+#                - master
+#      - deploy-prod:
+#          filters:
+#            branches:
+#              only:
+#                - master
