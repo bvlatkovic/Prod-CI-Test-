@@ -46,20 +46,20 @@ jobs:
       #- run:
       #    name: Install Unlocked Package in a scratch org 
       #    command: sfdx force:package:install --package $PACKAGE_NAME -u ${CIRCLE_BRANCH}
-deploy-prod:
-    docker:
-    - image: circleci/node:latest
-    steps:
-      - checkout
-      - run:
-          name: Install Dependencies
-          command: . build/install.sh
-      - run:
-          name: Login to Production
-          command: . build/setup-prod.sh
-      - run:
-          name: Deploy to Production
-          command: . build/deploy-prod.sh
+#deploy-prod:
+#    docker:
+#    - image: circleci/node:latest
+#    steps:
+#      - checkout
+#      - run:
+#          name: Install Dependencies
+#          command: . build/install.sh
+#      - run:
+#          name: Login to Production
+#          command: . build/setup-prod.sh
+#      - run:
+#          name: Deploy to Production
+#          command: . build/deploy-prod.sh
 workflows:
   version: 2
   validate:
